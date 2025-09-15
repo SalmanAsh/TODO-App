@@ -5,6 +5,7 @@ const openNoteDialog = (noteId=null) => {
     const dialog = document.getElementById("noteDialog");
     const titleInput = document.getElementById("noteTitle");
     const contentInput = document.getElementById("noteContent");
+    const noteColor = document.getElementById("noteColor");
 
     if (noteId) {
         // Edit note
@@ -34,19 +35,22 @@ const saveNote = (event) => {
 
     const title = document.getElementById("noteTitle").value.trim();
     const content = document.getElementById("noteContent").value.trim();
+    const color = document.getElementById("noteColor").value.trim();
 
     if (editingNoteId){
         const noteIndex = notes.findIndex(note => note.id == editingNoteId)
         notes[noteIndex] = {
             ...notes[noteIndex],
             title: title,
-            content: content
+            content: content,
+            color: color
         }
     }else{
         notes.unshift({
             id: generateId(),
             title: title,
-            content: content
+            content: content,
+            color: color
         })
     }
 
@@ -119,7 +123,7 @@ const renderNotes = () => {
         let minutes = date.getMinutes().toString().padStart(2, '0');
         let dateTimeString = `${day}/${month}/${year} ${hours}:${minutes}`;
         return `
-            <div class="note-card">
+            <div class="note-card" style="background: ${note.color || '#ffffffff'};">
                 <h3 class="note-title">${note.title}</h3>
                 <p class="note-content">${note.content}</p>
             <div class="note-timestamp" style="font-size:0.85em;color:#888;margin-top:8px;text-align:right;">${dateTimeString}</div>
@@ -141,5 +145,4 @@ const deleteNote = (delId) => {
     notes = notes.filter(note => note.id != delId);
     saveNotes();
     renderNotes();
-
 }
