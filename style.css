@@ -240,6 +240,19 @@ dialog::backdrop {
   min-height: 120px;
 }
 
+.form-color {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--surface-color);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+  background: var(--base-color);
+  color: var(--text-color);
+  resize: vertical;
+  height: 50px;
+}
+
 .dialog-actions {
   display: flex;
   gap: 1rem;
@@ -285,3 +298,4 @@ dialog::backdrop {
   font-size: 1rem;
   margin-bottom: 2rem;
 }
+
